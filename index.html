@@ -1,173 +1,265 @@
-<!DOCTYPE html><html lang="en">
+<!--
+复制以下文件到你的仓库：
+/
+  index.html
+  works.html
+  about.html
+  contact.html
+  project.html   （单个项目详情页模板，复制多份用）
+  /assets/css/style.css
+  /assets/js/main.js
+  /assets/img/       （把你的图片放这里；本模板先用占位符）
+--><!-- ============================== index.html ============================== --><!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Elko’s Creation Notes</title>
-  <style>
-    :root{
-      --maxw: 960px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,\"Noto Sans\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",sans-serif; line-height:1.65;
-      color:#111; background:#fff;
-    }
-    header{ border-bottom:1px solid #e6e6e6; background:#fafafa }
-    .wrap{ max-width:var(--maxw); margin:0 auto; padding:18px 16px }
-    h1{ margin:0 0 8px 0; font-size: clamp(24px, 4vw, 36px); }
-    .sub{ color:#666; margin:0 0 12px 0 }
-    .toolbar{ display:flex; gap:8px; align-items:center; flex-wrap:wrap }
-    .btn{ appearance:none; border:1px solid #ccc; background:#fff; padding:6px 12px; border-radius:10px; cursor:pointer; font-size:14px }
-    .btn[aria-pressed="true"]{ border-color:#111; font-weight:600 }
-    main .wrap{ padding-top:22px }
-    .panel{ border:1px solid #eee; border-radius:14px; padding:14px; background:#fff }
-    .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px }
-    figure{ margin:0; border:1px solid #eee; border-radius:12px; overflow:hidden; background:#f8f8f8; display:flex; flex-direction:column }
-    figure img{ width:100%; height:160px; object-fit:cover; display:block; background:#ddd }
-    figure figcaption{ padding:8px 10px; font-size:12px; color:#444; display:flex; justify-content:space-between; align-items:center; gap:8px }
-    .danger{ color:#a00 }
-    .uploader{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:8px 0 }
-    .uploader input[type="file"]{ display:none }
-    .drop{ border:2px dashed #bbb; border-radius:12px; padding:16px; text-align:center; color:#666 }
-    .note{ color:#666; font-size:13px }
-    footer{ border-top:1px solid #e6e6e6; background:#fafafa }
-    code{ background:#f1f1f1; padding:2px 6px; border-radius:6px }
-    label.linklike{ border:1px solid #ccc; border-radius:10px; padding:6px 12px; cursor:pointer; background:#fff }
-    form.urladd{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 }
-    .urladd input{ padding:6px 10px; border:1px solid #ccc; border-radius:10px; min-width:220px }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elko – Portfolio</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <h1 id="site-title">Elko’s Creation Notes</h1>
-      <p class="sub" data-i18n="subtitle">This site documents the conceptual development of the Star of Departure (启航星) universe.</p>
-      <div class="toolbar" role="group" aria-label="language switcher">
-        <button id="lang-en" class="btn" data-lang="en" aria-pressed="true">English</button>
-        <button id="lang-zh" class="btn" data-lang="zh">中文</button>
+<header class="site-header">
+  <a class="brand" href="/">Elko</a>
+  <button class="nav-toggle" aria-label="menu"></button>
+  <nav class="site-nav" aria-label="primary">
+    <a href="/works.html">Works</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Creation Notes · Concept Design</h1>
+      <p>Selected works for Star of Departure (启航星) and related explorations.</p>
+      <div class="hero-cta">
+        <a class="btn" href="/works.html">View Works</a>
+        <a class="btn ghost" href="/about.html">About</a>
       </div>
     </div>
-  </header>  <main>
-    <div class="wrap">
-      <section class="panel" aria-labelledby="gallery-title">
-        <h2 id="gallery-title" data-i18n="galleryTitle">Image Gallery</h2>
-        <p class="note" data-i18n="galleryNote">You can add images from your device (preview only, not saved to the server) or insert images already stored in this repository by URL.</p><div class="uploader">
-      <label for="fileInput" class="linklike" data-i18n="chooseFiles">Choose images…</label>
-      <input id="fileInput" type="file" accept="image/*" multiple />
-      <span class="note" data-i18n="dragHint">You may also drag and drop files into the box below.</span>
+    <div class="hero-cover aspect-16x9" style="--bg:url('/assets/img/cover-hero.jpg')"></div>
+  </section>  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="grid cards">
+        <!-- 替换为你的项目条目；每个卡片链接到 project.html 的副本 -->
+        <article class="card">
+          <a class="card-media aspect-4x3" href="/project.html" style="--bg:url('/assets/img/feat-01.jpg')"></a>
+          <div class="card-body">
+            <h3 class="card-title">Galleon Spinner Reimagined</h3>
+            <p class="card-meta">Product concept · 2025</p>
+          </div>
+        </article>
+        <article class="card">
+          <a class="card-media aspect-4x3" href="/project.html" style="--bg:url('/assets/img/feat-02.jpg')"></a>
+          <div class="card-body">
+            <h3 class="card-title">Elko – Character Studies</h3>
+            <p class="card-meta">Figure design · 2025</p>
+          </div>
+        </article>
+        <article class="card">
+          <a class="card-media aspect-4x3" href="/project.html" style="--bg:url('/assets/img/feat-03.jpg')"></a>
+          <div class="card-body">
+            <h3 class="card-title">Departure Colony</h3>
+            <p class="card-meta">Worldbuilding · 2024–2025</p>
+          </div>
+        </article>
+      </div>
     </div>
-
-    <div id="dropZone" class="drop" data-i18n="dropHere">Drop images here</div>
-
-    <form class="urladd" id="urlForm">
-      <input type="url" id="imgUrl" placeholder="https://raw.githubusercontent.com/&lt;user&gt;/&lt;repo&gt;/main/path/image.jpg" aria-label="image url" />
-      <input type="text" id="imgAlt" placeholder="alt text / 描述" aria-label="alt text" />
-      <button type="submit" class="btn" data-i18n="addFromUrl">Add from URL</button>
-    </form>
-
-    <div id="gallery" class="grid" aria-live="polite" aria-busy="false"></div>
-    <p class="note" data-i18n="persistNote">Files chosen from your device are displayed locally and will not persist after you refresh. To keep images permanently, commit them to this repository and reference their paths or use the form above to add by URL.</p>
   </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> Elko-Utopia · All rights reserved.</p>
+  </div>
+</footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html><!-- ============================== works.html ============================== --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Works – Elko</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">Elko</a>
+  <button class="nav-toggle" aria-label="menu"></button>
+  <nav class="site-nav" aria-label="primary">
+    <a class="active" href="/works.html">Works</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Works</h1>
+      <div class="grid cards">
+        <!-- 批量项目缩略图，占位符，替换成你的图和链接 -->
+        <!-- 复制以下 article 多次使用 -->
+        <article class="card">
+          <a class="card-media aspect-1x1" href="/project.html" style="--bg:url('/assets/img/work-01.jpg')"></a>
+          <div class="card-body">
+            <h3 class="card-title">Project Title</h3>
+            <p class="card-meta">Type · Year</p>
+          </div>
+        </article>
+        <article class="card">
+          <a class="card-media aspect-1x1" href="/project.html" style="--bg:url('/assets/img/work-02.jpg')"></a>
+          <div class="card-body">
+            <h3 class="card-title">Project Title</h3>
+            <p class="card-meta">Type · Year</p>
+          </div>
+        </article>
+        <article class="card">
+          <a class="card-media aspect-1x1" href="/project.html" style="--bg:url('/assets/img/work-03.jpg')"></a>
+          <div class="card-body">
+            <h3 class="card-title">Project Title</h3>
+            <p class="card-meta">Type · Year</p>
+          </div>
+        </article>
+        <!-- …… -->
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container"><p>© <span id="year"></span> Elko-Utopia</p></div></footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html><!-- ============================== about.html ============================== --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About – Elko</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">Elko</a>
+  <button class="nav-toggle" aria-label="menu"></button>
+  <nav class="site-nav" aria-label="primary">
+    <a href="/works.html">Works</a>
+    <a class="active" href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <section class="section">
+    <div class="container narrow">
+      <h1 class="section-title">About</h1>
+      <p>Concept designer based in Savannah. Focused on worldbuilding, character design, and interactive storytelling for the Star of Departure (启航星) universe.</p>
+      <ul class="list">
+        <li>Focus: Concept Art · Visual Development · Systems Design</li>
+        <li>Tools: Photoshop, Procreate, Blender, VS Code</li>
+        <li>Email: <a href="mailto:yourname@example.com">yourname@example.com</a></li>
+      </ul>
+      <div class="grid two">
+        <div class="prose">
+          <h2>Statement</h2>
+          <p>Short artist statement goes here. Replace with your own text.</p>
+        </div>
+        <div class="portrait aspect-3x4" style="--bg:url('/assets/img/portrait.jpg')"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container"><p>© <span id="year"></span> Elko-Utopia</p></div></footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html><!-- ============================== contact.html ============================== --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact – Elko</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">Elko</a>
+  <button class="nav-toggle" aria-label="menu"></button>
+  <nav class="site-nav" aria-label="primary">
+    <a href="/works.html">Works</a>
+    <a href="/about.html">About</a>
+    <a class="active" href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <section class="section">
+    <div class="container narrow">
+      <h1 class="section-title">Contact</h1>
+      <p>For collaborations or commissions, please reach out via email.</p>
+      <p><a class="btn" href="mailto:yourname@example.com">yourname@example.com</a></p>
+      <h2>Links</h2>
+      <ul class="list">
+        <li><a href="https://github.com/Elko-Utopia" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="#">ArtStation</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container"><p>© <span id="year"></span> Elko-Utopia</p></div></footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html><!-- ============================== project.html ============================== --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Title – Elko</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">Elko</a>
+  <button class="nav-toggle" aria-label="menu"></button>
+  <nav class="site-nav" aria-label="primary">
+    <a class="active" href="/works.html">Works</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main>
+  <article class="section">
+    <div class="container narrow">
+      <h1 class="section-title">Project Title</h1>
+      <p class="muted">Type · Year · Role</p>
+      <div class="aspect-16x9 cover" style="--bg:url('/assets/img/project-hero.jpg')"></div>
+      <div class="prose">
+        <h2>Overview</h2>
+        <p>Short description. Replace with your project overview, goals, constraints, and results.</p>
+        <h2>Process</h2>
+        <p>Describe research, sketches, iterations. Add images below.</p>
+      </div><div class="grid images">
+    <div class="aspect-4x3" style="--bg:url('/assets/img/project-01.jpg')"></div>
+    <div class="aspect-4x3" style="--bg:url('/assets/img/project-02.jpg')"></div>
+    <div class="aspect-4x3" style="--bg:url('/assets/img/project-03.jpg')"></div>
+  </div>
 </div>
 
-  </main>  <footer>
-    <div class="wrap">
-      <p class="note">© <span id="year"></span> Elko-Utopia · <span data-i18n="powered">Powered by GitHub Pages</span></p>
-    </div>
-  </footer>  <script>
-    // i18n dictionary
-    const I18N = {
-      en: {
-        subtitle: "This site documents the conceptual development of the Star of Departure (启航星) universe.",
-        galleryTitle: "Image Gallery",
-        galleryNote: "You can add images from your device (preview only, not saved to the server) or insert images already stored in this repository by URL.",
-        chooseFiles: "Choose images…",
-        dragHint: "You may also drag and drop files into the box below.",
-        dropHere: "Drop images here",
-        addFromUrl: "Add from URL",
-        persistNote: "Files chosen from your device are displayed locally and will not persist after you refresh. To keep images permanently, commit them to this repository and reference their paths or use the form above to add by URL.",
-        powered: "Powered by GitHub Pages"
-      },
-      zh: {
-        subtitle: "本网站用于记录“启航星”概念世界的开发过程与设计笔记。",
-        galleryTitle: "图片画廊",
-        galleryNote: "可以从本地设备选择图片进行预览（仅在当前页面显示，服务器不会保存），也可以通过仓库内图片的 URL 插入。",
-        chooseFiles: "选择图片…",
-        dragHint: "也可以把文件拖拽到下面的区域。",
-        dropHere: "把图片拖到这里",
-        addFromUrl: "通过 URL 添加",
-        persistNote: "从本地选择的文件仅在本页预览，刷新后不会保留。若需要长期保存，请把图片提交到仓库并引用其路径，或使用上方表单通过 URL 添加。",
-        powered: "由 GitHub Pages 提供"
-      }
-    };
+  </article>
+</main>
+<footer class="site-footer"><div class="container"><p>© <span id="year"></span> Elko-Utopia</p></div></footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html><!-- ============================== assets/css/style.css ============================== -->/* 基础排版 */ :root{ --maxw: 1100px; --pad: 20px; --radius: 14px; --border: #e7e7e7; --text:#121212; --muted:#666; --bg:#ffffff; --card:#fafafa; } *{box-sizing:border-box} html,body{margin:0;height:100%} body{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif; color:var(--text); background:var(--bg); line-height:1.7} img{max-width:100%; display:block}
 
-    const $ = (sel, root=document) => root.querySelector(sel);
-    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+.container{max-width:var(--maxw); margin:0 auto; padding:0 var(--pad)} .container.narrow{max-width:880px} .section{padding:48px 0} .section-title{margin:0 0 18px 0; font-size:clamp(24px,4vw,36px)} .muted{color:var(--muted)} .list{padding-left:18px}
 
-    function setLang(lang){
-      const dict = I18N[lang] || I18N.en;
-      document.documentElement.lang = lang;
-      $$('#lang-en, #lang-zh').forEach(btn=> btn.setAttribute('aria-pressed', String(btn.dataset.lang===lang)));
-      $$('[data-i18n]').forEach(el=>{
-        const key = el.getAttribute('data-i18n');
-        if(dict[key]) el.textContent = dict[key];
-      });
-      localStorage.setItem('elko_lang', lang);
-    }
+/* 头部与导航 */ .site-header{position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid var(--border);} .site-header .brand{display:inline-block; padding:14px var(--pad); text-decoration:none; font-weight:700; color:var(--text)} .site-nav{display:flex; gap:6px; align-items:center; margin-left:auto; padding-right:var(--pad)} .site-nav a{display:inline-block; padding:10px 12px; text-decoration:none; color:var(--text); border-radius:10px} .site-nav a.active, .site-nav a:hover{background:#f2f2f2} .nav-toggle{display:none; width:44px; height:44px; margin-left:auto; margin-right:8px; background:none; border:0} .nav-toggle::before{content:"☰"; font-size:22px}
 
-    // Initial language
-    setLang(localStorage.getItem('elko_lang') || 'en');
-    $('#lang-en').addEventListener('click', ()=> setLang('en'));
-    $('#lang-zh').addEventListener('click', ()=> setLang('zh'));
+@media (max-width: 760px){ .site-header{display:flex; align-items:center} .site-nav{display:none; position:absolute; right:8px; top:56px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:8px; flex-direction:column; width:180px} .site-nav.open{display:flex} .nav-toggle{display:block} }
 
-    // Year
-    $('#year').textContent = new Date().getFullYear();
+/* Hero */ .hero{display:grid; grid-template-columns:1.2fr 1fr; gap:20px; align-items:center; border-bottom:1px solid var(--border)} .hero-inner{padding:48px var(--pad)} .hero-inner h1{margin:0 0 8px 0; font-size:clamp(28px,5vw,48px)} .hero-cta{display:flex; gap:10px; margin-top:14px} .hero-cover{min-height:320px; background:#ddd;}
 
-    // Image gallery helpers
-    const gallery = $('#gallery');
-    const dropZone = $('#dropZone');
+/* 通用 */ .btn{display:inline-block; background:#111; color:#fff; padding:10px 16px; border-radius:12px; text-decoration:none} .btn.ghost{background:#fff; color:#111; border:1px solid var(--border)} .aspect-16x9{aspect-ratio:16/9; background:var(--card); border-radius:var(--radius); background-size:cover; background-position:center;} .aspect-4x3{aspect-ratio:4/3; background:var(--card); border-radius:var(--radius); background-size:cover; background-position:center;} .aspect-3x4{aspect-ratio:3/4; background:var(--card); border-radius:var(--radius); background-size:cover; background-position:center;} .aspect-1x1{aspect-ratio:1/1; background:var(--card); border-radius:var(--radius); background-size:cover; background-position:center;} .cover{background-size:cover; background-position:center} .portrait{background-size:cover; background-position:center}
 
-    function addImage(src, alt){
-      const fig = document.createElement('figure');
-      const img = document.createElement('img');
-      img.src = src; img.alt = alt || '';
-      const cap = document.createElement('figcaption');
-      const span = document.createElement('span');
-      span.textContent = alt || '';
-      const del = document.createElement('button');
-      del.className = 'btn';
-      del.textContent = '×';
-      del.title = 'remove';
-      del.addEventListener('click', ()=> fig.remove());
-      cap.append(span, del);
-      fig.append(img, cap);
-      gallery.append(fig);
-    }
+/* 卡片与网格 */ .grid{display:grid; gap:16px} .grid.cards{grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));} .grid.two{grid-template-columns:1.2fr 0.8fr; gap:22px} .card{background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden} .card-media{display:block; background-size:cover; background-position:center} .card-media::before{content:""; display:block; width:100%; height:100%; background:var(--bg); border-bottom:1px solid var(--border)} .card-body{padding:12px 14px} .card-title{margin:0 0 6px 0; font-size:18px} .card-meta{margin:0; color:var(--muted); font-size:13px}
 
-    function handleFiles(files){
-      for(const file of files){
-        if(!file.type.startsWith('image/')) continue;
-        const url = URL.createObjectURL(file);
-        addImage(url, file.name);
-      }
-    }
+.site-footer{border-top:1px solid var(--border); padding:18px 0; background:#fff}
 
-    // pick files
-    const fileInput = $('#fileInput');
-    $('label[for="fileInput"]').addEventListener('click', ()=> fileInput.click());
-    fileInput.addEventListener('change', (e)=> handleFiles(e.target.files));
+/* 小屏幕布局修正 */ @media (max-width: 960px){ .hero{grid-template-columns:1fr} .grid.two{grid-template-columns:1fr} }
 
-    // drag & drop
-    ;['dragenter','dragover'].forEach(ev=> dropZone.addEventListener(ev, e=>{ e.preventDefault(); dropZone.style.background='#f3f6ff'; dropZone.style.borderColor='#7aa7ff'; }));
-    ;['dragleave','drop'].forEach(ev=> dropZone.addEventListener(ev, e=>{ e.preventDefault(); dropZone.style.background=''; dropZone.style.borderColor=''; }));
-    dropZone.addEventListener('drop', (e)=> handleFiles(e.dataTransfer.files));
+/* 支持通过 style="--bg:url('...')" 设置背景图 / [class="aspect-"]{background-image:var(--bg)}
 
-    // add by URL
-    $('#urlForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const url = $('#imgUrl').value.trim();
-      const alt = $('#imgAlt').value.trim();
-      if(url){ addImage(url, alt); $('#imgUrl').value=''; $('#imgAlt').value=''; }
-    });
-  </script></body>
-</html>
+/* ============================== assets/js/main.js ============================== / / 放到 /assets/js/main.js */ (function(){ const y = document.querySelectorAll('#year'); y.forEach(el=> el.textContent = new Date().getFullYear()); const btn = document.querySelector('.nav-toggle'); const nav = document.querySelector('.site-nav'); if(btn && nav){ btn.addEventListener('click', ()=> nav.classList.toggle('open')); } })();
