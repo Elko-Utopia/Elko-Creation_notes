@@ -1,1 +1,0 @@
-# Elko-Creation_notes
