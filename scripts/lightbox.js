@@ -147,21 +147,32 @@ function applyTransitionDuration() {
 }
 
 function lockScroll() {
+  console.log('� 使用改进的滚动锁定');
   if (scrollLockSnapshot || typeof window === 'undefined') return;
   const body = document.body;
   const docEl = document.documentElement;
   if (!body || !docEl) return;
 
+  // 保存当前滚动位置
+  const currentScrollY = window.scrollY;
+  const currentScrollX = window.scrollX;
+  
   const scrollbarWidth = window.innerWidth - docEl.clientWidth;
   scrollLockSnapshot = {
     bodyOverflow: body.style.overflow,
     bodyPaddingRight: body.style.paddingRight,
     docOverflow: docEl.style.overflow,
     appliedPadding: 0,
+    savedScrollY: currentScrollY,  // 保存滚动位置
+    savedScrollX: currentScrollX
   };
 
+  // 只锁定body，不锁定documentElement，避免触发重排
   body.style.overflow = 'hidden';
-  docEl.style.overflow = 'hidden';
+  body.style.position = 'fixed';
+  body.style.top = `-${currentScrollY}px`;
+  body.style.left = `-${currentScrollX}px`;
+  body.style.width = '100%';
 
   if (scrollbarWidth > 0) {
     const computedPadding = parseFloat(window.getComputedStyle(body).paddingRight) || 0;
@@ -172,16 +183,24 @@ function lockScroll() {
 }
 
 function unlockScroll() {
+  console.log('� 使用改进的滚动解锁');
   if (!scrollLockSnapshot) return;
   const body = document.body;
   const docEl = document.documentElement;
+  
   if (body) {
+    // 恢复body样式
     body.style.overflow = scrollLockSnapshot.bodyOverflow || '';
     body.style.paddingRight = scrollLockSnapshot.bodyPaddingRight || '';
+    body.style.position = '';
+    body.style.top = '';
+    body.style.left = '';
+    body.style.width = '';
+    
+    // 恢复滚动位置
+    window.scrollTo(scrollLockSnapshot.savedScrollX || 0, scrollLockSnapshot.savedScrollY || 0);
   }
-  if (docEl) {
-    docEl.style.overflow = scrollLockSnapshot.docOverflow || '';
-  }
+  
   scrollLockSnapshot = null;
 }
 
@@ -221,19 +240,23 @@ function scanNodeForImages(node) {
 }
 
 function onImageClick(event) {
+  console.log('🎯 lightbox onImageClick 被调用！', event.currentTarget);
   if (event.button && event.button !== 0) return;
   event.preventDefault();
 
   const target = event.currentTarget;
   if (!(target instanceof HTMLImageElement)) return;
 
+  console.log('🎯 准备调用 openLightbox', target);
   openLightbox(target);
 }
 
 async function openLightbox(triggerImage) {
+  console.log('🚀 openLightbox 被调用！', triggerImage);
   if (isOpen || !triggerImage) return;
 
   const source = resolveSource(triggerImage);
+  console.log('🔍 resolved source:', source);
   if (!source) return;
 
   const requestId = ++openRequestId;
@@ -281,7 +304,12 @@ async function openLightbox(triggerImage) {
 
     document.addEventListener('keydown', onKeyDown);
     window.addEventListener('resize', handleResize);
-    overlayEl.focus({ preventScroll: true });
+    // 彻底移除focus调用 - 用其他方式实现键盘支持
+    console.log('🚫 彻底跳过所有focus调用');
+    
+    // 手动添加键盘支持，不依赖focus
+    overlayEl.setAttribute('tabindex', '-1');
+    overlayEl.style.outline = 'none';
   } catch (error) {
     console.error('[lightbox] failed to load image', error);
     closeLightbox();
