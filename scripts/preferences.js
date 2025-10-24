@@ -1,4 +1,5 @@
 const THEME_KEY = 'theme-preference';
+const LANG_KEY = 'lang-preference';
 const root = document.documentElement;
 // Safer base path detection: works whether Vite replaces import.meta.env or not
 const basePath = (() => {
@@ -24,6 +25,10 @@ async function initializePreferences() {
   applyTheme(initialTheme, { persist: false });
   syncThemeButtons(initialTheme);
 
+  const initialLang = readStoredLanguage() ?? getDocumentLanguage();
+  applyLanguage(initialLang, { persist: false });
+  syncLanguageButtons(initialLang);
+
   const prefersDarkMedia = window.matchMedia?.('(prefers-color-scheme: dark)');
   prefersDarkMedia?.addEventListener?.('change', (event) => {
     if (!readStoredTheme()) {
@@ -42,7 +47,14 @@ async function initializePreferences() {
     });
   });
 
-  // language toggle removed for English-only site; UI retains icon only
+  document.querySelectorAll('[data-lang-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const current = (root.getAttribute('lang') || '').toLowerCase().startsWith('zh') ? 'zh' : 'en';
+      const next = current === 'zh' ? 'en' : 'zh';
+      applyLanguage(next);
+      syncLanguageButtons(next);
+    });
+  });
 
   document.querySelectorAll('[data-search-toggle]').forEach((button) => {
     button.addEventListener('click', () => {
@@ -50,16 +62,23 @@ async function initializePreferences() {
     });
   });
 
-  // 延迟光箱初始化，确保图片已渲染且lightbox.js已加载
-  setTimeout(() => {
-    if (!lightboxInitialized && typeof window.initLightboxAuto === 'function') {
-      const images = document.querySelectorAll('.md-content.pswp-featured img[data-full]');
-      if (images.length > 0) {
-        lightboxInitialized = true;
-        window.initLightboxAuto();
-      }
-    }
-  }, 200);
+  if (document.querySelector('main img') && !lightboxInitialized) {
+    lightboxInitialized = true;
+    console.log('Initializing lightbox for .md-content.pswp-featured img elements');
+    console.log('basePath:', basePath);
+    const { initLightbox } = await import(/* @vite-ignore */ `${basePath}scripts/lightbox.js`);
+    console.log('Lightbox imported successfully');
+    initLightbox({
+      selector: '.md-content.pswp-featured img',
+      viewportPadding: 24,
+      transitionDuration: 200,
+    });
+    console.log('Lightbox initialized');
+  } else if (!document.querySelector('main img')) {
+    console.log('No main img elements found');
+  } else {
+    console.log('Lightbox already initialized, skipping');
+  }
 }
 
 function readStoredTheme() {
@@ -95,7 +114,45 @@ function syncThemeButtons(theme) {
   });
 }
 
-// language storage and toggle removed; site is English-only by default
+function readStoredLanguage() {
+  try {
+    const value = localStorage.getItem(LANG_KEY);
+    if (value === 'en' || value === 'zh') return value;
+  } catch (_) {
+    // ignore storage errors
+  }
+  return null;
+}
+
+function getDocumentLanguage() {
+  const attr = root.getAttribute('lang') || 'en';
+  if (attr.toLowerCase().startsWith('zh')) return 'zh';
+  if (attr.toLowerCase().startsWith('en')) return 'en';
+  return 'en';
+}
+
+function applyLanguage(lang, { persist = true } = {}) {
+  root.setAttribute('lang', lang);
+  if (persist) {
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch (_) {
+      // ignore storage errors
+    }
+  }
+}
+
+function syncLanguageButtons(lang) {
+  document.querySelectorAll('[data-lang-toggle]').forEach((button) => {
+    button.setAttribute('data-lang-current', lang);
+    const label = button.querySelector('.lang-label');
+    if (label) {
+      label.textContent = lang === 'zh' ? 'ZH' : 'EN';
+    }
+    const title = lang === 'zh' ? 'Switch to English' : 'Switch to Chinese';
+    button.setAttribute('title', title);
+  });
+}
 
 function ensureSearchOverlay() {
   if (searchOverlay) return;
